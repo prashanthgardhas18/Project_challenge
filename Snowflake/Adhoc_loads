@@ -1,0 +1,41 @@
+CREATE WAREHOUSE INTERVIEW_WH WITH WAREHOUSE_SIZE = 'LARGE' WAREHOUSE_TYPE = 'STANDARD' AUTO_SUSPEND = 600 AUTO_RESUME = TRUE MIN_CLUSTER_COUNT = 1 MAX_CLUSTER_COUNT = 2 SCALING_POLICY = 'STANDARD';
+
+
+
+CREATE DATABASE USER_PRASHANTHGARDHAS;
+
+
+
+CREATE SCHEMA "USER_PRASHANTHGARDHAS"."MY_SCHEMA";
+
+
+
+CREATE STAGE "USER_PRASHANTHGARDHAS"."MY_SCHEMA".airlines_stage URL = 's3://aws-external-stage-bucket/airlines/airlines.csv' CREDENTIALS = (AWS_KEY_ID = 'AKIASODD2CZDUV4ECWYA' AWS_SECRET_KEY = '****************************************');
+
+
+
+CREATE STAGE "USER_PRASHANTHGARDHAS"."MY_SCHEMA".airports_stage URL = 's3://aws-external-stage-bucket/airlines/airlines.csv' CREDENTIALS = (AWS_KEY_ID = 'AKIASODD2CZDUV4ECWYA' AWS_SECRET_KEY = '****************************************');
+
+
+
+CREATE STAGE "USER_PRASHANTHGARDHAS"."MY_SCHEMA".flights_stage URL = 's3://aws-external-stage-bucket/airlines/airlines.csv' CREDENTIALS = (AWS_KEY_ID = 'AKIASODD2CZDUV4ECWYA' AWS_SECRET_KEY = '****************************************');
+
+
+
+CREATE FILE FORMAT "USER_PRASHANTHGARDHAS"."MY_SCHEMA".my_file_format TYPE = 'CSV' COMPRESSION = 'AUTO' FIELD_DELIMITER = ',' RECORD_DELIMITER = '\n' SKIP_HEADER = 1 FIELD_OPTIONALLY_ENCLOSED_BY = 'NONE' TRIM_SPACE = TRUE ERROR_ON_COLUMN_COUNT_MISMATCH = TRUE ESCAPE = 'NONE' ESCAPE_UNENCLOSED_FIELD = '\134' DATE_FORMAT = 'AUTO' TIMESTAMP_FORMAT = 'AUTO' NULL_IF = ('\\N');
+
+
+
+copy into airlines
+from @airlines_stage
+file_format = (format_name = 'my_file_format');
+
+
+copy into airports
+from @airports_stage
+file_format = (format_name = 'my_file_format');
+
+
+copy into flights
+from @flights_stage
+file_format = (format_name = 'my_file_format');
