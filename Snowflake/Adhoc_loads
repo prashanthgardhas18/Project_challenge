@@ -14,11 +14,11 @@ CREATE STAGE "USER_PRASHANTHGARDHAS"."MY_SCHEMA".airlines_stage URL = 's3://aws-
 
 
 
-CREATE STAGE "USER_PRASHANTHGARDHAS"."MY_SCHEMA".airports_stage URL = 's3://aws-external-stage-bucket/airlines/airlines.csv' CREDENTIALS = (AWS_KEY_ID = 'AKIASODD2CZDUV4ECWYA' AWS_SECRET_KEY = '****************************************');
+CREATE STAGE "USER_PRASHANTHGARDHAS"."MY_SCHEMA".airports_stage URL = 's3://aws-external-stage-bucket/airports/airports.csv' CREDENTIALS = (AWS_KEY_ID = 'AKIASODD2CZDUV4ECWYA' AWS_SECRET_KEY = '****************************************');
 
 
 
-CREATE STAGE "USER_PRASHANTHGARDHAS"."MY_SCHEMA".flights_stage URL = 's3://aws-external-stage-bucket/airlines/airlines.csv' CREDENTIALS = (AWS_KEY_ID = 'AKIASODD2CZDUV4ECWYA' AWS_SECRET_KEY = '****************************************');
+CREATE STAGE "USER_PRASHANTHGARDHAS"."MY_SCHEMA".flights_stage URL = 's3://aws-external-stage-bucket/flights/' CREDENTIALS = (AWS_KEY_ID = 'AKIASODD2CZDUV4ECWYA' AWS_SECRET_KEY = '****************************************');
 
 
 
